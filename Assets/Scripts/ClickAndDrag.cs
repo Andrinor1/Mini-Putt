@@ -49,6 +49,10 @@ public class ClickAndDrag : MonoBehaviour
             force = 0;
             mouseEnd = Vector2.zero;
         }
+        if (body.velocity.magnitude < 0.1)
+        {
+            body.velocity = Vector2.zero; //Stop the ball instead of waiting forever for it to slow down
+        }
     }
 
     private void OnTriggerEnter(Collider other)
