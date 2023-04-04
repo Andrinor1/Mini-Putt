@@ -8,12 +8,17 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         // Just loads the 1st level. This is just placeholder code for now.
-        SceneManager.GetSceneAt(1);
+        LoadScene("SampleScene");
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void OnApplicationQuit()
     {
-        SceneManager.GetSceneAt(0);
+        SceneManager.LoadScene(0);
     }
 
     public void Quit()

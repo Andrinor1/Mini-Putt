@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 # Whatever stuff wasn't caught in the initial gitignore
 /UserSettings/EditorUserSettings.asset
+/UserSettings/Layouts/default-2021.dwlt
