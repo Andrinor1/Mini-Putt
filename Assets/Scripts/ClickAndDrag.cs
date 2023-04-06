@@ -9,8 +9,6 @@ using UnityEngine;
 public class ClickAndDrag : MonoBehaviour
 {
 
-
-
     public float velocityScale = 1;
 
     private Rigidbody2D body;
@@ -68,7 +66,7 @@ public class ClickAndDrag : MonoBehaviour
         if (!ballStopped) return;
         mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log("Mouse End: " + mouseEnd);
-        force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, Mathf.Infinity);
+        force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
     }
     
