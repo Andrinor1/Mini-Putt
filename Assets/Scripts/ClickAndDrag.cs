@@ -31,7 +31,7 @@ public class ClickAndDrag : MonoBehaviour
             ballStopped = true;
             // Add something to increase number of shots taken? Or should that be done when the ball is first shot?
             body.angularVelocity = 0;
-            Debug.Log("Stopped!");
+            //Debug.Log("Stopped!");
         }
     }
 
@@ -65,7 +65,7 @@ public class ClickAndDrag : MonoBehaviour
     {
         if (!ballStopped) return;
         mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("Mouse End: " + mouseEnd);
+        //Debug.Log("Mouse End: " + mouseEnd);
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
     }
