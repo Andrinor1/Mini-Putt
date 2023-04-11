@@ -7,8 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     private void OnEnable()
     {
-        Mathf.MoveTowards(Time.timeScale, 0, Time.deltaTime);
-        // Time.timeScale = .05f;
+        Time.timeScale = 0f;
     }
 
     private void OnDisable()
