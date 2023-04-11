@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void Play()
-    {
-        // Just loads the 1st level. This is just placeholder code for now.
-        LoadScene("SampleScene");
-    }
-
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
