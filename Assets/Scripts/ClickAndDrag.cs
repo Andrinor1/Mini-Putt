@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
 {
+    private ScoreKeeper scorekeeper;
 
+    
     public float velocityScale = 1;
 
     private Rigidbody2D body;
@@ -18,7 +20,11 @@ public class ClickAndDrag : MonoBehaviour
     private Vector3 ballDirection;
     private Vector3 mouseEnd;
 
-    // Start is called before the first frame update
+
+    void Start() // Do it in Start(), so Awake() has already been called on all components
+    {
+        scorekeeper = ScoreKeeper.Instance; // Assign the `gameManager` variable by using the static reference
+    }
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -53,14 +59,6 @@ public class ClickAndDrag : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Hole")
-        {
-            //Trigger level being completed
-        }
-    }
-
     public void OnMouseUp()
     {
         if (!ballStopped) return;
@@ -68,6 +66,7 @@ public class ClickAndDrag : MonoBehaviour
         //Debug.Log("Mouse End: " + mouseEnd);
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
+        scorekeeper.increaseStroke();
     }
     
 }
