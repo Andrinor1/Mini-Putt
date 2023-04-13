@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
 {
+    private ScoreKeeper scorekeeper;
 
+    
     public float velocityScale = 1;
 
     private Rigidbody2D body;
@@ -18,7 +20,11 @@ public class ClickAndDrag : MonoBehaviour
     private Vector3 ballDirection;
     private Vector3 mouseEnd;
 
-    // Start is called before the first frame update
+
+    void Start() // Do it in Start(), so Awake() has already been called on all components
+    {
+        scorekeeper = ScoreKeeper.Instance; // Assign the `gameManager` variable by using the static reference
+    }
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -31,7 +37,7 @@ public class ClickAndDrag : MonoBehaviour
             ballStopped = true;
             // Add something to increase number of shots taken? Or should that be done when the ball is first shot?
             body.angularVelocity = 0;
-            Debug.Log("Stopped!");
+            //Debug.Log("Stopped!");
         }
     }
 
@@ -53,21 +59,14 @@ public class ClickAndDrag : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Hole")
-        {
-            //Trigger level being completed
-        }
-    }
-
     public void OnMouseUp()
     {
         if (!ballStopped) return;
         mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("Mouse End: " + mouseEnd);
+        //Debug.Log("Mouse End: " + mouseEnd);
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
+        scorekeeper.increaseStroke();
     }
     
 }
