@@ -3,15 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum LevelPars
+{
+    // Changes to this enum should also reflect on the findPar() method in ScoreUI
+    // Currently changing this to a dictionary, refer to the code below
+    Level1 = 1,
+    Level2 = 2,
+    Level3 = 3,
+    ScoreUI = 99
+}
+
+enum Test
+{
+    wut = 1
+}
 
 public class ScoreKeeper : MonoBehaviour
 {
+    // The par of each level
+    private Dictionary<string, int> levelPars = new Dictionary<string, int> {
+        {"Level1", 1},
+        {"Level2", 2},
+        {"Level3", 3},
+        {"ScoreUI", 99}
+    };
     public static ScoreKeeper Instance; // A static reference to the GameManager instance
     private int strokeCount = 0;
     private List<int> score = new List<int>();
 
-    void Awake()
+    void Start()
     {
+        // Subscribing to onBallHit. When the onBallHit event happens, it will callback the increaseStroke method.
+        GameEvents.current.onBallHit += increaseStroke;
+
         if (Instance == null) // If there is no instance already
         {
             DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
@@ -38,5 +62,12 @@ public class ScoreKeeper : MonoBehaviour
     public int getStroke()
     {
         return strokeCount;
+    }
+
+    public int getPar(string levelName)
+    {
+        if (!levelPars.ContainsKey(levelName))
+            return -1;
+        return levelPars[levelName];
     }
 }
