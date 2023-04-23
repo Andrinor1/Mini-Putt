@@ -66,7 +66,7 @@ public class ClickAndDrag : MonoBehaviour
         //Debug.Log("Mouse End: " + mouseEnd);
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
-        scorekeeper.increaseStroke();
+        GameEvents.current.BallHit();
     }
     
 }
