@@ -31,7 +31,7 @@ public class ScoreKeeper : MonoBehaviour
     private int strokeCount = 0;
     private List<int> score = new List<int>();
 
-    void Start()
+    void Awake()
     {
         // Subscribing to onBallHit. When the onBallHit event happens, it will callback the increaseStroke method.
         GameEvents.current.onBallHit += increaseStroke;
