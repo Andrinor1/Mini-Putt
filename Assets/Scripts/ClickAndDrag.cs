@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
@@ -67,6 +63,7 @@ public class ClickAndDrag : MonoBehaviour
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
         GameEvents.current.BallHit();
+        Debug.Log("Ball was hit");
     }
     
 }

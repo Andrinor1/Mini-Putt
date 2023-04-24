@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,13 +15,9 @@ enum LevelPars
     ScoreUI = 99
 }
 
-enum Test
-{
-    wut = 1
-}
-
 public class ScoreKeeper : MonoBehaviour
 {
+    public string note = "MAIN MENU ONLY";
     // The par of each level
     private Dictionary<string, int> levelPars = new Dictionary<string, int> {
         {"Level1", 1},
@@ -31,10 +29,11 @@ public class ScoreKeeper : MonoBehaviour
     private int strokeCount = 0;
     private List<int> score = new List<int>();
 
-    void Awake()
+    void Start()
     {
         // Subscribing to onBallHit. When the onBallHit event happens, it will callback the increaseStroke method.
         GameEvents.current.onBallHit += increaseStroke;
+        Debug.Log("onBallHit subscribed for ScoreKeeper");
 
         if (Instance == null) // If there is no instance already
         {
@@ -49,6 +48,7 @@ public class ScoreKeeper : MonoBehaviour
 
     public void increaseStroke()
     {
+        Debug.Log("Stroke Increased");
         strokeCount++;
     }
 
