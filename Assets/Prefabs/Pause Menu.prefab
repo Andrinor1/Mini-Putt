@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 5043172292736129069}
   - component: {fileID: 5043172292736129068}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: To Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

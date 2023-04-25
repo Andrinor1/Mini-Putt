@@ -11,23 +11,21 @@ public class ScoreUI : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Score Initialized");
-        GameEvents.current.onBallHit += IncreaseScore;
+        GameEvents.current.onBallHit += ChangeScore;
         scoreKeeper = ScoreKeeper.Instance;
         string levelName = SceneManager.GetActiveScene().name;
         par.text += scoreKeeper.getPar(levelName);
         score.text += scoreKeeper.getStroke();
     }
 
-    public void IncreaseScore()
+    public void ChangeScore()
     {
-        Debug.Log("Score Increased");
         score.text = Regex.Replace(score.text, @"[\d-]", string.Empty);
         score.text = "Score: " + scoreKeeper.getStroke();
     }
 
     private void OnDestroy()
     {
-        GameEvents.current.onBallHit -= IncreaseScore;
+        GameEvents.current.onBallHit -= ChangeScore;
     }
 }

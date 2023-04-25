@@ -17,6 +17,9 @@ public class Pause : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         Time.timeScale = 1.0f;
+        if (sceneName.Equals("MainMenu"))
+            GameEvents.current.ExitLevel();
+
         SceneManager.LoadScene(sceneName);
-    }
+    } 
 }

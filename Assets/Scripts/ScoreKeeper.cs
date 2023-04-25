@@ -33,7 +33,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         // Subscribing to onBallHit. When the onBallHit event happens, it will callback the increaseStroke method.
         GameEvents.current.onBallHit += increaseStroke;
-        Debug.Log("onBallHit subscribed for ScoreKeeper");
+        GameEvents.current.onExitLevel += resetScore;
 
         if (Instance == null) // If there is no instance already
         {
@@ -48,8 +48,13 @@ public class ScoreKeeper : MonoBehaviour
 
     public void increaseStroke()
     {
-        Debug.Log("Stroke Increased");
         strokeCount++;
+    }
+
+    public void resetScore()
+    {
+        strokeCount = 0;
+        score.Clear();
     }
 
     public void endLevel()

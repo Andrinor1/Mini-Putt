@@ -63,7 +63,5 @@ public class ClickAndDrag : MonoBehaviour
         force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
         hit = true;
         GameEvents.current.BallHit();
-        Debug.Log("Ball was hit");
     }
-    
 }

@@ -6,11 +6,19 @@ public class GameEvents : MonoBehaviour
     public string note = "MAIN MENU ONLY";
     public static GameEvents current;
     public event Action onBallHit;
+    public event Action onExitLevel;
 
     void Awake()
     {
-        current = this;
-        DontDestroyOnLoad(this);
+        if (current == null) // If there is no instance already
+        {
+            DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
+            current = this;
+        }
+        else if (current != this) // If there is already an instance and it's not `this` instance
+        {
+            Destroy(gameObject); // Destroy the GameObject, this component is attached to
+        }
     }
 
     public void BallHit()
@@ -18,6 +26,14 @@ public class GameEvents : MonoBehaviour
         if (onBallHit != null)
         {
             onBallHit();
+        }
+    }
+
+    public void ExitLevel()
+    {
+        if (onExitLevel != null)
+        {
+            onExitLevel();
         }
     }
 }
