@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
 
 public class ScoreUI : MonoBehaviour
 {
@@ -14,6 +11,7 @@ public class ScoreUI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Score Initialized");
         GameEvents.current.onBallHit += IncreaseScore;
         scoreKeeper = ScoreKeeper.Instance;
         string levelName = SceneManager.GetActiveScene().name;
@@ -23,7 +21,13 @@ public class ScoreUI : MonoBehaviour
 
     public void IncreaseScore()
     {
+        Debug.Log("Score Increased");
         score.text = Regex.Replace(score.text, @"[\d-]", string.Empty);
         score.text = "Score: " + scoreKeeper.getStroke();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.current.onBallHit -= IncreaseScore;
     }
 }

@@ -1,18 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
+    public string note = "MAIN MENU ONLY";
     public static GameEvents current;
+    public event Action onBallHit;
 
     void Awake()
     {
         current = this;
+        DontDestroyOnLoad(this);
     }
 
-    public event Action onBallHit;
     public void BallHit()
     {
         if (onBallHit != null)
