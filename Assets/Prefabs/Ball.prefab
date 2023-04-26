@@ -137,3 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityScale: 0.5
+  trianglePrefab: {fileID: 4709296049305009536, guid: 38f3eadc6108f8645bf8161b9f9074d4, type: 3}
