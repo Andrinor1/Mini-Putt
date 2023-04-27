@@ -50,14 +50,12 @@ public class ScoreKeeper : MonoBehaviour
     public void enableFreePlay()
     {
         isFreePlay = true;
-        Debug.Log(isFreePlay);
         
     }
 
     public void disableFreePlay()
     {
         isFreePlay = false;
-        Debug.Log(isFreePlay);
     }
 
     public void increaseStroke()
