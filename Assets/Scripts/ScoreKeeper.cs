@@ -28,6 +28,7 @@ public class ScoreKeeper : MonoBehaviour
     public static ScoreKeeper Instance; // A static reference to the GameManager instance
     private int strokeCount = 0;
     private List<int> score = new List<int>();
+    private bool isFreePlay = false;
 
     void Start()
     {
@@ -46,6 +47,19 @@ public class ScoreKeeper : MonoBehaviour
         }
     }
 
+    public void enableFreePlay()
+    {
+        isFreePlay = true;
+        Debug.Log(isFreePlay);
+        
+    }
+
+    public void disableFreePlay()
+    {
+        isFreePlay = false;
+        Debug.Log(isFreePlay);
+    }
+
     public void increaseStroke()
     {
         strokeCount++;
@@ -61,7 +75,9 @@ public class ScoreKeeper : MonoBehaviour
     {
         score.Add(strokeCount);
         strokeCount = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (!isFreePlay)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else SceneManager.LoadScene("MainMenu");
     }
 
     public int getStroke()
