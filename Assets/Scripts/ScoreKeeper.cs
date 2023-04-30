@@ -20,9 +20,9 @@ public class ScoreKeeper : MonoBehaviour
     public string note = "MAIN MENU ONLY";
     // The par of each level
     private Dictionary<string, int> levelPars = new Dictionary<string, int> {
-        {"Level1", 1},
+        {"Level1", 2},
         {"Level2", 2},
-        {"Level3", 3},
+        {"Level3", 4},
         {"ScoreUI", 99}
     };
     public static ScoreKeeper Instance; // A static reference to the GameManager instance
@@ -67,6 +67,11 @@ public class ScoreKeeper : MonoBehaviour
     public int getStroke()
     {
         return strokeCount;
+    }
+    
+    public Dictionary<string, int> getAllPars()
+    {
+        return levelPars;
     }
 
     public int getPar(string levelName)
