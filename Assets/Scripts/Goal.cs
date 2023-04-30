@@ -24,7 +24,7 @@ public class Goal : MonoBehaviour
         GameObject ball = collision.gameObject;
         Vector2 ballVelocity = ball.GetComponent<Rigidbody2D>().velocity;
         float distance = Vector2.Distance(transform.position, ball.transform.position);
-        if (ballVelocity.magnitude < enterSpeed && distance < 0.2)
+        if (ballVelocity.magnitude < enterSpeed && distance < 0.3)
         {
             ball.SetActive(false);
             scoreKeeper.endLevel();
