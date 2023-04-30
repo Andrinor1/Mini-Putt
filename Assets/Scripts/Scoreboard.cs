@@ -11,6 +11,8 @@ public class Scoreboard : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        ScoreKeeper.Instance.disableFreePlay();
+        ScoreKeeper.Instance.resetScore();
         SceneManager.LoadScene(sceneName);
     }
 

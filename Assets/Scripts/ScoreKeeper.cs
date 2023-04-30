@@ -64,7 +64,7 @@ public class ScoreKeeper : MonoBehaviour
         strokeCount = 0;
         if (!isFreePlay)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        else SceneManager.LoadScene("MainMenu");
+        else SceneManager.LoadScene("Scoreboard");
     }
 
     public int getStroke() { return strokeCount; }
