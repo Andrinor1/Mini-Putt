@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
     private ScoreKeeper scoreKeeper;
-    [SerializeField] private float enterSpeed = 0.3f;
+    [SerializeField] private float enterSpeed = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +24,8 @@ public class Goal : MonoBehaviour
         GameObject ball = collision.gameObject;
         Vector2 ballVelocity = ball.GetComponent<Rigidbody2D>().velocity;
         float distance = Vector2.Distance(transform.position, ball.transform.position);
-        Debug.Log(distance);
-        if (ballVelocity.magnitude < enterSpeed && distance < 0.2)
+        if (ballVelocity.magnitude < enterSpeed && distance < 0.3)
         {
-            Debug.Log("POINTS!");
             ball.SetActive(false);
             scoreKeeper.endLevel();
         }

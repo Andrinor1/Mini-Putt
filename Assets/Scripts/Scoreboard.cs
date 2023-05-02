@@ -11,13 +11,14 @@ public class Scoreboard : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        ScoreKeeper.Instance.resetScore();
         SceneManager.LoadScene(sceneName);
     }
 
     void Start()
     {
         Dictionary<string, int> levelPars = ScoreKeeper.Instance.getPars();
-        List<int> score = ScoreKeeper.Instance.getScore();
+        Dictionary<string, string> score = ScoreKeeper.Instance.getScore();
 
         // Populate the score table
         for (int i = levelPars.Count; i > 0; i--)
@@ -26,14 +27,14 @@ public class Scoreboard : MonoBehaviour
             GameObject newRow = createTableRow();
 
             // Create cells
-            GameObject tableCell = createTableCell(newRow);
+            GameObject tableCell = createTableCell(newRow); // Level
             setCellText(tableCell, i.ToString());
 
-            tableCell = createTableCell(newRow);
+            tableCell = createTableCell(newRow); // Par
             setCellText(tableCell, levelPars["Level" + i].ToString());
 
-            tableCell = createTableCell(newRow);
-            try { setCellText(tableCell, score[i - 1].ToString()); }
+            tableCell = createTableCell(newRow); // Score
+            try { setCellText(tableCell, score["Level" + i]); }
             catch { setCellText(tableCell, "None"); }
         }
     }
