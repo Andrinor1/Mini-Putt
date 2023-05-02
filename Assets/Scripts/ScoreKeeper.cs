@@ -16,14 +16,18 @@ public class ScoreKeeper : MonoBehaviour
     };
     public static ScoreKeeper Instance; // A static reference to the GameManager instance
     private int strokeCount = 0;
-    private List<int> score = new List<int>();
-    private bool isFreePlay = false;
+    private Dictionary<string, string> score = new Dictionary<string, string>();
+    public bool isFreePlay = false;
 
     void Awake()
     {
         // Subscribing to onBallHit. When the onBallHit event happens, it will callback the increaseStroke method.
         GameEvents.current.onBallHit += increaseStroke;
         GameEvents.current.onExitLevel += resetScore;
+
+        // Instantiate score dictionary
+        foreach (KeyValuePair<string, int> par in levelPars)
+            score[par.Key] = "None";
 
         if (Instance == null) // If there is no instance already
         {
@@ -34,17 +38,6 @@ public class ScoreKeeper : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
         }
-    }
-
-    public void enableFreePlay()
-    {
-        isFreePlay = true;
-        
-    }
-
-    public void disableFreePlay()
-    {
-        isFreePlay = false;
     }
 
     public void increaseStroke()
@@ -60,7 +53,7 @@ public class ScoreKeeper : MonoBehaviour
 
     public void endLevel()
     {
-        score.Add(strokeCount);
+        score[SceneManager.GetActiveScene().name] = strokeCount.ToString();
         strokeCount = 0;
         if (!isFreePlay)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -78,5 +71,5 @@ public class ScoreKeeper : MonoBehaviour
         return levelPars[levelName];
     }
 
-    public List<int> getScore() { return score; }
+    public Dictionary<string, string> getScore() { return score; }
 }
