@@ -13,7 +13,7 @@ public class arrowDrag : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (!ballPressed)
+        if (!ballPressed && clickAndDragScript.ballStopped)
         {
             ballPressed = true;
             directionArrow.SetActive(true);
