@@ -4,35 +4,65 @@ using UnityEngine;
 
 public class arrowDrag : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    Vector2 startPoint;
-    Vector2 currentPoint;
-    Rigidbody2D playerBody;
-    ClickAndDrag script;
-    void Start()
+    public GameObject ball;
+    private Rigidbody2D ballRigidBody;
+    private ClickAndDrag clickAndDragScript;
+    private CircleCollider2D circleCollider;
+    private bool ballPressed = false;
+    Vector2 mousePosition;
+
+    public void Start()
     {
-        playerBody = player.GetComponent<Rigidbody2D>();
-        script = player.GetComponent<ClickAndDrag>();
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        ballRigidBody = ball.GetComponent<Rigidbody2D>();
+        clickAndDragScript = ball.GetComponent<ClickAndDrag>();
+        circleCollider = ball.GetComponent<CircleCollider2D>();
     }
-    private void OnMouseDown()
+
+    public void OnMouseDown()
     {
-        //if (script.ballStopped)
+        //Debug.Log("ballPressed: " + ballPressed);
+        //if (!ballPressed)
         //{
-        //    startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    // Getting the position of the mouse in terms of game units
+        //    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //    // Finding the difference in positions between the ball and the mouse
+        //    Vector2 dir = ballRigidBody.position - mousePosition;
+        //    Debug.Log("dir: " + dir);
+        //    Debug.Log("dir.magnitude: " + dir.magnitude);
+
+        //    if (dir.magnitude <= circleCollider.radius)
+        //    {
+        //        ballPressed = true;
+        //    }
         //}
-        startPoint = playerBody.transform.position;
     }
+
+    public void OnMouseUp()
+    {
+        if (ballPressed)
+            ballPressed = false;
+    }
+
     private void Update()
     {
-        Debug.Log(startPoint);
-        if (script.ballStopped && Input.GetMouseButton(0))
+        if (clickAndDragScript.ballStopped && Input.GetMouseButton(0))
         {
-            currentPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var dir = startPoint - currentPoint;
-            //var angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
-            transform.Rotate(0, 0, 180);
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Debug.Log("This hsould work");
+            gameObject.SetActive(true);
+            // Getting the position of the mouse in terms of game units
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // Finding the difference in positions between the ball and the mouse
+            Vector2 dir = ballRigidBody.position - mousePosition;
+
+            // Setting the position of the triangle to that opposite of the ball
+            transform.position = ballRigidBody.position + dir;
+
+            // Angle of the ball is now that of what is calculated. This, in term, rotates the triangle
+            var angle = 180 - Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            ballRigidBody.rotation = angle;
         }
     }
 }
