@@ -6,12 +6,11 @@ public class ClickAndDrag : MonoBehaviour
 {
     private ScoreKeeper scorekeeper;
 
-    
     public float velocityScale = 1;
 
     private Rigidbody2D body;
     private float force;
-    private bool ballStopped = true;
+    [HideInInspector] public bool ballStopped = true;
     private bool hit = false;
     private Vector3 ballDirection;
     private Vector3 mouseEnd;
