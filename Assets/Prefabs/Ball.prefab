@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionArrow: {fileID: 8507606243173570882}
+  minDistanceFromBall: 1.5
+  maxdistanceFromBall: 10
   ballRigidBody: {fileID: 2584856799048736512}
   clickAndDragScript: {fileID: 2584856799048736513}
   circleCollider: {fileID: 2584856799048736516}
