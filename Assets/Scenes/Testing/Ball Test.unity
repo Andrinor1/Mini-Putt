@@ -582,6 +582,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 940029024245289616, guid: f39408cb742752f4fb137ed3f97c27b9, type: 3}
+      propertyPath: maxdistanceFromBall
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 940029024245289616, guid: f39408cb742752f4fb137ed3f97c27b9, type: 3}
+      propertyPath: minDistanceFromBall
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2584856799048736517, guid: f39408cb742752f4fb137ed3f97c27b9, type: 3}
       propertyPath: m_Name
       value: Ball
