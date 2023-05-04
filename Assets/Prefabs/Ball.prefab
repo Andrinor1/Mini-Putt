@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4418853d401f0184aad22801f2256ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityScale: 0.5
+  velocityScale: 1
   ballStopped: 1
 --- !u!114 &940029024245289616
 MonoBehaviour:
