@@ -12,39 +12,58 @@ public class arrowDrag : MonoBehaviour
     [Header("Drag 'ball' object into these parameters")]
     public Rigidbody2D ballRigidBody;
     public CircleCollider2D circleCollider;
-    private bool ballPressed = false;
+    private bool mousePressed = false;
+    private Vector2 mouseOrigin;
+
+    void Awake()
+    {
+        // The ball can be clicked directly, but this allows the screen to be clicked and dragged as well
+        GameEvents.current.onMousePressed += OnMouseDown;
+        GameEvents.current.onMouseReleased += OnMouseUp;
+        mouseOrigin = ballRigidBody.position;
+    }
+
+    void OnDestroy()
+    {
+        GameEvents.current.onMousePressed -= OnMouseDown;
+        GameEvents.current.onMouseReleased -= OnMouseUp;
+    }
 
     public void OnMouseDown()
     {
-        if (!ballPressed)
+        if (!mousePressed)
         {
-            ballPressed = true;
+            mousePressed = true;
             directionArrow.SetActive(true);
+            mouseOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        Debug.Log("Mouse Downed");
+        Debug.Log("Mouse Pressed");
     }
 
     public void OnMouseUp()
     {
-        if (ballPressed)
+        if (mousePressed)
         {
-            ballPressed = false;
+            mousePressed = false;
             directionArrow.SetActive(false);
         }
+
+        Debug.Log("Mouse Released");
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && ballPressed)
+
+        if (Input.GetMouseButton(0) && mousePressed)
         {
             // Getting the position of the mouse in terms of game units
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // Finding the difference in positions between the ball and the mouse
-            Vector2 positionDifference = (ballRigidBody.position - mousePosition);
+            Vector2 positionDifference = (mouseOrigin - mousePosition);
             positionDifference /= 2;
 
-            // Angle of the ball is now that of what is calculated. This, in term, rotates the DirectionArrow
+            // Angle of the ball is now that of what is calculated.
             var angle = 180 - Mathf.Atan2(positionDifference.x, positionDifference.y) * Mathf.Rad2Deg;
             ballRigidBody.rotation = angle;
 
@@ -66,6 +85,7 @@ public class arrowDrag : MonoBehaviour
 
             // Setting the position of the directionArrow such that it's opposite of the ball
             directionArrow.transform.position = ballRigidBody.position + positionDifference;
+
         }
     }
 }

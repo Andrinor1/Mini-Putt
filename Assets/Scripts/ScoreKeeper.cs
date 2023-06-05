@@ -40,6 +40,12 @@ public class ScoreKeeper : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        GameEvents.current.onBallHit -= increaseStroke;
+        GameEvents.current.onExitLevel -= resetScore;
+    }
+
     public void increaseStroke()
     {
         strokeCount++;
