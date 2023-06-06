@@ -7,6 +7,8 @@ public class GameEvents : MonoBehaviour
     public static GameEvents current;
     public event Action onBallHit;
     public event Action onExitLevel;
+    public event Action onMousePressed;
+    public event Action onMouseReleased;
 
     void Awake()
     {
@@ -34,6 +36,22 @@ public class GameEvents : MonoBehaviour
         if (onExitLevel != null)
         {
             onExitLevel();
+        }
+    }
+
+    public void MousePressed()
+    {
+        if (onMousePressed != null)
+        {
+            onMousePressed();
+        }
+    }
+
+    public void MouseReleased()
+    {
+        if (onMouseReleased != null)
+        {
+            onMouseReleased();
         }
     }
 }

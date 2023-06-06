@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
@@ -13,16 +14,21 @@ public class ClickAndDrag : MonoBehaviour
     [HideInInspector] public bool ballStopped = true;
     private bool hit = false;
     private Vector3 ballDirection;
+    private Vector3 mouseStart;
     private Vector3 mouseEnd;
 
-
-    void Start() // Do it in Start(), so Awake() has already been called on all components
-    {
-        scorekeeper = ScoreKeeper.Instance; // Assign the `gameManager` variable by using the static reference
-    }
     void Awake()
     {
+        scorekeeper = ScoreKeeper.Instance; // Assign the `gameManager` variable by using the static reference
         body = GetComponent<Rigidbody2D>();
+        GameEvents.current.onMousePressed += OnMouseDown;
+        GameEvents.current.onMouseReleased += OnMouseUp;
+    }
+
+    void OnDestroy()
+    {
+        GameEvents.current.onMousePressed -= OnMouseDown;
+        GameEvents.current.onMouseReleased -= OnMouseUp;
     }
 
     void Update()
@@ -42,7 +48,7 @@ public class ClickAndDrag : MonoBehaviour
         {
             hit = false;
             ballStopped = false;
-            ballDirection = transform.position - mouseEnd;
+            ballDirection = mouseStart - mouseEnd;
 
             body.AddForce(ballDirection * force, ForceMode2D.Impulse);
             force = 0;
@@ -54,12 +60,17 @@ public class ClickAndDrag : MonoBehaviour
         }
     }
 
+    public void OnMouseDown()
+    {
+        mouseStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
     public void OnMouseUp()
     {
         if (!ballStopped) return;
         mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log("Mouse End: " + mouseEnd);
-        force = Mathf.Clamp(Vector2.Distance(mouseEnd, transform.position) * velocityScale, 0, 3);
+        force = Mathf.Clamp(Vector2.Distance(mouseStart, mouseEnd) * velocityScale, 0, 3);
         hit = true;
         GameEvents.current.BallHit();
     }
