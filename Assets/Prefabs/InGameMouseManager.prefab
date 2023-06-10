@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659200122474329726}
-  - component: {fileID: 5659200122474329727}
+  - component: {fileID: 4201196912027203648}
   - component: {fileID: 5659200122474329725}
   m_Layer: 0
   m_Name: InGameMouseManager
@@ -26,15 +26,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5659200122474329600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 0.85858, y: 0.85858, z: 0.85858}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5659200122474329727
-BoxCollider2D:
+--- !u!60 &4201196912027203648
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5255337, y: -0.0148973465}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,9 +56,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 30.480282, y: 16.514578}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -11.007306, y: 6.553096}
+      - {x: -11.068828, y: -5.99573}
+      - {x: 11.052219, y: -6.135744}
+      - {x: 10.958358, y: 4.606392}
+      - {x: 9.057286, y: 4.6005707}
+      - {x: 9.057045, y: 6.5289335}
 --- !u!114 &5659200122474329725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +76,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bb329604706264580c4106ae568642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
