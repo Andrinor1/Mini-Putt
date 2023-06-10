@@ -31,9 +31,13 @@ public class arrowDrag : MonoBehaviour
 
     public void OnMouseDown()
     {
-        directionArrow.SetActive(true);
-        // Getting the position of the mouse in terms of game units
-        mouseOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (ballRigidBody.velocity == Vector2.zero)
+        {
+            directionArrow.SetActive(true);
+            // Getting the position of the mouse in terms of game units
+            mouseOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        
     }
 
     public void OnMouseUp()
