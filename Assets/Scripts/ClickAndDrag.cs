@@ -36,7 +36,6 @@ public class ClickAndDrag : MonoBehaviour
         if (body.velocity == Vector2.zero && !ballStopped)
         {
             ballStopped = true;
-            // Add something to increase number of shots taken? Or should that be done when the ball is first shot?
             body.angularVelocity = 0;
             //Debug.Log("Stopped!");
         }
