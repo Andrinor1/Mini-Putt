@@ -11,7 +11,7 @@ public class arrowDrag : MonoBehaviour
     [Header("Drag 'ball' object into these parameters")]
     public Rigidbody2D ballRigidBody;
     public CircleCollider2D circleCollider;
-    private Vector2 mouseOrigin;
+    private Vector2 mouseStart;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class arrowDrag : MonoBehaviour
         GameEvents.current.onMousePressed += OnMouseDown;
         GameEvents.current.onMouseReleased += OnMouseUp;
         GameEvents.current.onMouseCancel += OnMouseUp;
-        mouseOrigin = ballRigidBody.position;
+        mouseStart = ballRigidBody.position;
     }
 
     void OnDestroy()
@@ -35,7 +35,7 @@ public class arrowDrag : MonoBehaviour
         {
             directionArrow.SetActive(true);
             // Getting the position of the mouse in terms of game units
-            mouseOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         
     }
@@ -50,10 +50,16 @@ public class arrowDrag : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // Getting the position of the mouse in terms of game units
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (mouseStart.magnitude == mouseEnd.magnitude)
+            {
+                directionArrow.transform.position = new Vector3(999, 999, -5);
+                return;
+            }
 
             // Finding the difference in positions between when the mouse was clicked and the current mouse position
-            Vector2 positionDifference = (mouseOrigin - mousePosition);
+            Vector2 positionDifference = (mouseStart - mouseEnd);
             positionDifference /= 2;
 
             // Getting the angle of when the mouse was clicked vs. the current mouse position and setting the angle of the arrow.
@@ -67,7 +73,9 @@ public class arrowDrag : MonoBehaviour
                 positionDifference = positionDifference.normalized * circleCollider.radius * maxdistanceFromBall;
 
             // Setting the position of the directionArrow such that it's opposite of the ball
-            directionArrow.transform.position = ballRigidBody.position + positionDifference;
+            directionArrow.transform.position = new Vector3(ballRigidBody.position.x + positionDifference.x,
+                                                            ballRigidBody.position.y + positionDifference.y,
+                                                            -5);
 
         }
     }

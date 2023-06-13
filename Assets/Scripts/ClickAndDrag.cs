@@ -16,6 +16,7 @@ public class ClickAndDrag : MonoBehaviour
     private Vector3 ballDirection;
     private Vector3 mouseStart;
     private Vector3 mouseEnd;
+    private bool BallReady;
 
     void Awake()
     {
@@ -61,16 +62,19 @@ public class ClickAndDrag : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (ballStopped)
+            BallReady = true;
         mouseStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     public void OnMouseUp()
     {
-        if (!ballStopped) return;
         mouseEnd = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!BallReady || !ballStopped || mouseStart.magnitude == mouseEnd.magnitude) return;
         //Debug.Log("Mouse End: " + mouseEnd);
         force = Mathf.Clamp(Vector2.Distance(mouseStart, mouseEnd) * velocityScale, 0, 3);
         hit = true;
+        BallReady = false;
         GameEvents.current.BallHit();
     }
 }
