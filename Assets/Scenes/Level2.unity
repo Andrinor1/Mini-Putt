@@ -1324,6 +1324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameMouseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5659200122474329725, guid: 0552b35114f8a8545bb55769428f2982, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1897501343}
     - target: {fileID: 5659200122474329726, guid: 0552b35114f8a8545bb55769428f2982, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1794,6 +1798,11 @@ PrefabInstance:
 --- !u!224 &1897501342 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5043172292041413019, guid: 6e611e75f8bccf04e82e1bef229d1f47, type: 3}
+  m_PrefabInstance: {fileID: 1897501341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1897501343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5043172291651475212, guid: 6e611e75f8bccf04e82e1bef229d1f47, type: 3}
   m_PrefabInstance: {fileID: 1897501341}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1933625191
