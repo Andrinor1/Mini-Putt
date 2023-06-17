@@ -955,7 +955,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pixel Art Buttons_32: -1928951127
       Pixel Art Buttons_26: -1652622604
       Pixel Art Buttons_11: -274391213
       Pixel Art Buttons_28: -663879230
@@ -976,7 +975,6 @@ TextureImporter:
       Pixel Art Buttons_34: -2138457802
       Pixel Art Buttons_3: -132747179
       Pixel Art Buttons_9: -1044042041
-      Pixel Art Buttons_36: 2077694262
       Pixel Art Buttons_20: -1187571742
       Pixel Art Buttons_21: 1567423003
       Pixel Art Buttons_18: 150761880
@@ -989,8 +987,10 @@ TextureImporter:
       Pixel Art Buttons_24: 949024486
       Pixel Art Buttons_13: -22140383
       Pixel Art Buttons_33: 1488463123
+      Pixel Art Buttons_32: -1928951127
       Pixel Art Buttons_10: -130396734
       Pixel Art Buttons_1: 1507674729
+      Pixel Art Buttons_36: 2077694262
       Pixel Art Buttons_29: -902365527
       Pixel Art Buttons_30: -2056878129
       Pixel Art Buttons_27: -833502108
