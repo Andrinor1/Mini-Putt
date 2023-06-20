@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static string NOTE = "Loading 'Level1Freeplay' loads Level 1 in freeplay mode.";
+    public static string NOTE = "Loading '<LevelName>Freeplay' loads the level in freeplay mode.";
     public void LoadScene(string sceneName)
     {
         int freeplayIndex = sceneName.IndexOf("Freeplay");
