@@ -12,20 +12,20 @@ public class MouseInputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             mouseCancelled = true;
-            GameEvents.current.MouseCancel();
+            GameEvents.instance.MouseCancel();
         }
     }
     public void OnMouseDown()
     {
         if (!mouseCancelled && !pauseBody.activeSelf)
-            GameEvents.current.MousePressed();
+            GameEvents.instance.MousePressed();
         Debug.Log("Mouse Pressed");
     }
 
     public void OnMouseUp()
     {
         if (!mouseCancelled && !pauseBody.activeSelf)
-            GameEvents.current.MouseReleased();
+            GameEvents.instance.MouseReleased();
         else
             mouseCancelled = false;
         Debug.Log("Mouse Released");

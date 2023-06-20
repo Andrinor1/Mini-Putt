@@ -43,8 +43,11 @@ public class AudioManager : MonoBehaviour
         if (s == null)
             s = Array.Find(soundEffects, Sound => Sound.name == name);
         if (s == null)
-            Debug.LogWarning("Sound: '" +  name + "' not found!");
+        {
+            Debug.LogWarning("Sound: '" + name + "' not found!");
             return;
+        }
+
         s.source.Play();
     }
 

@@ -11,8 +11,8 @@ public class ScoreUI : MonoBehaviour
 
     void Start()
     {
-        GameEvents.current.onBallHit += ChangeScore;
-        scoreKeeper = ScoreKeeper.Instance;
+        GameEvents.instance.onBallHit += ChangeScore;
+        scoreKeeper = ScoreKeeper.instance;
         string levelName = SceneManager.GetActiveScene().name;
         par.text += scoreKeeper.getPar(levelName);
         score.text += scoreKeeper.getStroke();
@@ -26,6 +26,6 @@ public class ScoreUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvents.current.onBallHit -= ChangeScore;
+        GameEvents.instance.onBallHit -= ChangeScore;
     }
 }

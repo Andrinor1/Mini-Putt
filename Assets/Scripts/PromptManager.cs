@@ -19,12 +19,12 @@ public class PromptManager : MonoBehaviour
 
     void Start()
     {
-        GameEvents.current.onMousePressed += OnMouseDown;
+        GameEvents.instance.onMousePressed += OnMouseDown;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onMousePressed -= OnMouseDown;
+        GameEvents.instance.onMousePressed -= OnMouseDown;
     }
 
     // Update is called once per frame
