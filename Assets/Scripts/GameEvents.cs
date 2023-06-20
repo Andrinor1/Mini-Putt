@@ -10,6 +10,7 @@ public class GameEvents : MonoBehaviour
     public event Action onMousePressed;
     public event Action onMouseReleased;
     public event Action onMouseCancel;
+    public event Action onCluelessPrompt;
 
     void Awake()
     {
@@ -52,5 +53,13 @@ public class GameEvents : MonoBehaviour
     {
         if (onMouseCancel != null)
             onMouseCancel();
+    }
+
+    public void CluelessPrompt()
+    {
+        if (onCluelessPrompt != null)
+        {
+            onCluelessPrompt();
+        }
     }
 }

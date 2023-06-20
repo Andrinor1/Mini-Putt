@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseInputManager : MonoBehaviour
 {
     bool mouseCancelled = false;
-    public GameObject pauseMenu;
+    public GameObject pauseBody;
 
     private void Update()
     {
@@ -17,14 +17,14 @@ public class MouseInputManager : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        if (!mouseCancelled && !pauseMenu.activeSelf)
+        if (!mouseCancelled && !pauseBody.activeSelf)
             GameEvents.current.MousePressed();
         Debug.Log("Mouse Pressed");
     }
 
     public void OnMouseUp()
     {
-        if (!mouseCancelled && !pauseMenu.activeSelf)
+        if (!mouseCancelled && !pauseBody.activeSelf)
             GameEvents.current.MouseReleased();
         else
             mouseCancelled = false;
