@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,15 +26,18 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         foreach (Sound s in music)
-            configureSound(s);
+            ConfigureSound(s);
 
         foreach (Sound s in soundEffects)
-            configureSound(s);
+            ConfigureSound(s);
+
+        SceneManager.sceneUnloaded += SceneUnloadedStopMusic;
+        SceneManager.sceneLoaded += SceneLoadedStartMusic;
     }
 
     void Start()
     {
-        Play("Theme");
+        Play("MainMenu");
     }
 
 
@@ -51,7 +55,21 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    private void configureSound(Sound s)
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(music, Sound => Sound.name == name);
+        if (s == null)
+            s = Array.Find(soundEffects, Sound => Sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: '" + name + "' not found!");
+            return;
+        }
+
+        s.source.Stop();
+    }
+
+    private void ConfigureSound(Sound s)
     {
         s.source = gameObject.AddComponent<AudioSource>();
         s.source.clip = s.clip;
@@ -59,4 +77,8 @@ public class AudioManager : MonoBehaviour
         s.source.pitch = s.pitch;
         s.source.loop = s.loop;
     }
+
+    public void SceneUnloadedStopMusic(Scene scene) { Stop(scene.name); }
+
+    public void SceneLoadedStartMusic(Scene scene, LoadSceneMode mode) { Play(scene.name); }
 }

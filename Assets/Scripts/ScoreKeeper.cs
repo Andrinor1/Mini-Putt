@@ -9,11 +9,12 @@ public class ScoreKeeper : MonoBehaviour
 {
     // The par of each level
     private Dictionary<string, int> levelPars = new Dictionary<string, int> {
-        {"Level1", 2},
-        {"Level2", 2},
-        {"Level3", 4}
+        {"Level1-1", 3},
+        {"Level1-2", 3},
+        {"Level1-3", 5}
     };
     public static ScoreKeeper instance; // A static reference to the GameManager instance
+    private int levelGroup = 1; // This is for when we create more levels
     private int strokeCount = 0;
     private Dictionary<string, string> score = new Dictionary<string, string>();
 
@@ -44,11 +45,6 @@ public class ScoreKeeper : MonoBehaviour
         GameEvents.instance.onExitToMainMenu -= resetScore;
     }
 
-    public void increaseStroke()
-    {
-        strokeCount++;
-    }
-
     public void resetScore()
     {
         strokeCount = 0;
@@ -64,16 +60,20 @@ public class ScoreKeeper : MonoBehaviour
         else SceneManager.LoadScene("Scoreboard");
     }
 
-    public int getStroke() { return strokeCount; }
-    
-    public Dictionary<string, int> getPars() { return levelPars; }
-
     public int getPar(string levelName)
     {
         if (!levelPars.ContainsKey(levelName))
             return -1;
         return levelPars[levelName];
     }
+
+    public void increaseStroke() { strokeCount++; }
+
+    public int getStroke() { return strokeCount; }
+
+    public int getLevelGroup() { return levelGroup; }
+
+    public Dictionary<string, int> getPars() { return levelPars; }
 
     public Dictionary<string, string> getScore() { return score; }
 }
