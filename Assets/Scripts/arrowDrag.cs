@@ -16,17 +16,17 @@ public class arrowDrag : MonoBehaviour
     void Awake()
     {
         // The ball can be clicked directly, but this allows the screen to be clicked and dragged as well
-        GameEvents.current.onMousePressed += OnMouseDown;
-        GameEvents.current.onMouseReleased += OnMouseUp;
-        GameEvents.current.onMouseCancel += OnMouseUp;
+        GameEvents.instance.onMousePressed += OnMouseDown;
+        GameEvents.instance.onMouseReleased += OnMouseUp;
+        GameEvents.instance.onMouseCancel += OnMouseUp;
         mouseStart = ballRigidBody.position;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onMousePressed -= OnMouseDown;
-        GameEvents.current.onMouseReleased -= OnMouseUp;
-        GameEvents.current.onMouseCancel -= OnMouseUp;
+        GameEvents.instance.onMousePressed -= OnMouseDown;
+        GameEvents.instance.onMouseReleased -= OnMouseUp;
+        GameEvents.instance.onMouseCancel -= OnMouseUp;
     }
 
     public void OnMouseDown()

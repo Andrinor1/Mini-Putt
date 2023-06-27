@@ -9,16 +9,17 @@ public class Scoreboard : MonoBehaviour
 {
     public GameObject tableRows;
 
-    public void LoadScene(string sceneName)
+    public void toMainMenu()
     {
-        ScoreKeeper.Instance.resetScore();
-        SceneManager.LoadScene(sceneName);
+        FreeplayManager.instance.isFreePlay = false;
+        GameEvents.instance.ExitToMainMenu();
+        SceneManager.LoadScene("MainMenu");
     }
 
     void Start()
     {
-        Dictionary<string, int> levelPars = ScoreKeeper.Instance.getPars();
-        Dictionary<string, string> score = ScoreKeeper.Instance.getScore();
+        Dictionary<string, int> levelPars = ScoreKeeper.instance.getPars();
+        Dictionary<string, string> score = ScoreKeeper.instance.getScore();
 
         // Populate the score table
         for (int i = levelPars.Count; i > 0; i--)
