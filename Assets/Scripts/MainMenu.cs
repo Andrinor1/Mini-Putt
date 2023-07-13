@@ -17,11 +17,9 @@ public class MainMenu : MonoBehaviour
             FreeplayManager.instance.isFreePlay = true;
             SceneManager.LoadScene(sceneName.Substring(0, freeplayIndex));
         }
-        
     }
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
+    public void PlayAudio(string name) { AudioManager.instance.Play(name); }
+
+    public void Quit() { Application.Quit(); }
 }

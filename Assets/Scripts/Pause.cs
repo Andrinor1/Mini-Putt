@@ -23,4 +23,6 @@ public class Pause : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
+
+    public void PlayAudio(string name) { AudioManager.instance.Play(name); }
 }

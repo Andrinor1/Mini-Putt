@@ -9,9 +9,9 @@ public class ScoreKeeper : MonoBehaviour
 {
     // The par of each level
     private Dictionary<string, int> levelPars = new Dictionary<string, int> {
-        {"Level1-1", 3},
-        {"Level1-2", 3},
-        {"Level1-3", 5}
+        {"Level1-1", 2},
+        {"Level1-2", 2},
+        {"Level1-3", 4}
     };
     public static ScoreKeeper instance; // A static reference to the GameManager instance
     private int levelGroup = 1; // This is for when we create more levels
