@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Audio;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
@@ -19,11 +18,11 @@ public class AudioManager : MonoBehaviour
             instance = this;
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in music)
             ConfigureSound(s);
@@ -33,6 +32,14 @@ public class AudioManager : MonoBehaviour
 
         SceneManager.sceneUnloaded += SceneUnloadedStopMusic;
         SceneManager.sceneLoaded += SceneLoadedStartMusic;
+        GameEvents.instance.onBallHit += PlayBallHit;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneUnloaded -= SceneUnloadedStopMusic;
+        SceneManager.sceneLoaded -= SceneLoadedStartMusic;
+        GameEvents.instance.onBallHit -= PlayBallHit;
     }
 
     void Start()
@@ -53,6 +60,17 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
+    }
+
+    public void PlayBallHit()
+    {
+        List<string> ballHitSounds = new List<string>();
+
+        foreach (Sound s in soundEffects)
+            if (s.name.IndexOf("BallHit") != -1)
+                ballHitSounds.Add(s.name);
+
+        instance.Play(ballHitSounds[UnityEngine.Random.Range(0, ballHitSounds.Count)]);
     }
 
     public void Stop(string name)
