@@ -21,7 +21,7 @@ public class Pause : MonoBehaviour
             GameEvents.instance.ExitToMainMenu();
 
 
-        SceneManager.LoadScene(sceneName);
+        SceneTransitioner.instance.FadeToLevel(sceneName);
     }
 
     public void PlayAudio(string name) { AudioManager.instance.Play(name); }
