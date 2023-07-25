@@ -11,11 +11,11 @@ public class MainMenu : MonoBehaviour
 
 
         if (freeplayIndex == -1)
-            SceneManager.LoadScene(sceneName);
+            SceneTransitioner.instance.FadeToLevel(sceneName);
         else
         {
             FreeplayManager.instance.isFreePlay = true;
-            SceneManager.LoadScene(sceneName.Substring(0, freeplayIndex));
+            SceneTransitioner.instance.FadeToLevel(sceneName.Substring(0, freeplayIndex));
         }
     }
 
