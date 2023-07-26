@@ -20,7 +20,6 @@ public class Pause : MonoBehaviour
         if (sceneName.Equals("MainMenu"))
             GameEvents.instance.ExitToMainMenu();
 
-
         SceneTransitioner.instance.FadeToLevel(sceneName);
     }
 

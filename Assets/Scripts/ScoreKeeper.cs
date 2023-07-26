@@ -56,8 +56,8 @@ public class ScoreKeeper : MonoBehaviour
         score[SceneManager.GetActiveScene().name] = strokeCount.ToString();
         strokeCount = 0;
         if (!FreeplayManager.instance.isFreePlay)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        else SceneManager.LoadScene("Scoreboard");
+            SceneTransitioner.instance.FadeToNextLevel();
+        else SceneTransitioner.instance.FadeToLevel("Scoreboard");
     }
 
     public int getPar(string levelName)
