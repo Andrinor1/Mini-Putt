@@ -32,7 +32,6 @@ public class SceneTransitioner : MonoBehaviour
     {
         // This is a huge work around simply to get the name of the next scene in build settings
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        Debug.Log("nextSceneIndex: " +  nextSceneIndex + " | sceneCount: " + SceneManager.sceneCountInBuildSettings);
 
         if (nextSceneIndex > SceneManager.sceneCountInBuildSettings)
             nextSceneIndex -= 1;
