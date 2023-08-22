@@ -13,7 +13,7 @@ public class Scoreboard : MonoBehaviour
     {
         FreeplayManager.instance.isFreePlay = false;
         GameEvents.instance.ExitToMainMenu();
-        SceneManager.LoadScene("MainMenu");
+        SceneTransitioner.instance.FadeToLevel("MainMenu");
     }
 
     void Start()
