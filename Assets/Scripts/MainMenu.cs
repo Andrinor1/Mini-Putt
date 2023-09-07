@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
     {
         int freeplayIndex = sceneName.IndexOf("Freeplay");
 
-
         if (freeplayIndex == -1)
             SceneTransitioner.instance.FadeToLevel(sceneName);
         else
