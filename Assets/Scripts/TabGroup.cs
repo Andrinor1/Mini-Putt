@@ -44,6 +44,8 @@ public class TabGroup : MonoBehaviour
                 pagesToSwap[i].SetActive(true);
             else
                 pagesToSwap[i].SetActive(false);
+
+        AudioManager.instance.Play("MenuSelect");
     }
 
     public void ResetTabs(bool hardReset = false)

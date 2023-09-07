@@ -9,16 +9,17 @@ public class Scoreboard : MonoBehaviour
 {
     public GameObject tableRows;
 
-    public void LoadScene(string sceneName)
+    public void toMainMenu()
     {
-        ScoreKeeper.Instance.resetScore();
-        SceneManager.LoadScene(sceneName);
+        FreeplayManager.instance.isFreePlay = false;
+        GameEvents.instance.ExitToMainMenu();
+        SceneTransitioner.instance.FadeToLevel("MainMenu");
     }
 
     void Start()
     {
-        Dictionary<string, int> levelPars = ScoreKeeper.Instance.getPars();
-        Dictionary<string, string> score = ScoreKeeper.Instance.getScore();
+        Dictionary<string, int> levelPars = ScoreKeeper.instance.getPars();
+        Dictionary<string, string> score = ScoreKeeper.instance.getScore();
 
         // Populate the score table
         for (int i = levelPars.Count; i > 0; i--)
@@ -28,13 +29,16 @@ public class Scoreboard : MonoBehaviour
 
             // Create cells
             GameObject tableCell = createTableCell(newRow); // Level
-            setCellText(tableCell, i.ToString());
+            string cellText = ScoreKeeper.instance.getLevelGroup().ToString() + "-" + i.ToString();
+            setCellText(tableCell, cellText);
 
             tableCell = createTableCell(newRow); // Par
-            setCellText(tableCell, levelPars["Level" + i].ToString());
+            cellText = levelPars["Level" + ScoreKeeper.instance.getLevelGroup() + "-" + i].ToString();
+            setCellText(tableCell, cellText);
 
             tableCell = createTableCell(newRow); // Score
-            try { setCellText(tableCell, score["Level" + i]); }
+            cellText = score["Level" + ScoreKeeper.instance.getLevelGroup() + "-" + i];
+            try { setCellText(tableCell, cellText); }
             catch { setCellText(tableCell, "None"); }
         }
     }

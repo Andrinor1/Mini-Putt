@@ -18,8 +18,10 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         if (sceneName.Equals("MainMenu"))
-            GameEvents.current.ExitLevel();
+            GameEvents.instance.ExitToMainMenu();
 
-        SceneManager.LoadScene(sceneName);
-    } 
+        SceneTransitioner.instance.FadeToLevel(sceneName);
+    }
+
+    public void PlayAudio(string name) { AudioManager.instance.Play(name); }
 }

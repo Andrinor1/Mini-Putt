@@ -1,28 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEvents : MonoBehaviour
 {
-    public string note = "MAIN MENU ONLY";
-    public static GameEvents current;
+    public static GameEvents instance;
     public event Action onBallHit;
-    public event Action onExitLevel;
+    public event Action onExitToMainMenu;
     public event Action onMousePressed;
     public event Action onMouseReleased;
     public event Action onMouseCancel;
-    public event Action onCluelessPrompt;
 
     void Awake()
     {
-        if (current == null) // If there is no instance already
-        {
-            DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
-            current = this;
-        }
-        else if (current != this) // If there is already an instance and it's not `this` instance
+        if (instance == null) // If there is no instance already
+            instance = this;
+        else
         {
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
+            return;
         }
+
+        DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
     }
 
     public void BallHit()
@@ -31,10 +30,10 @@ public class GameEvents : MonoBehaviour
             onBallHit();
     }
 
-    public void ExitLevel()
+    public void ExitToMainMenu()
     {
-        if (onExitLevel != null)
-            onExitLevel();
+        if (onExitToMainMenu != null)
+            onExitToMainMenu();
     }
 
     public void MousePressed()
@@ -53,13 +52,5 @@ public class GameEvents : MonoBehaviour
     {
         if (onMouseCancel != null)
             onMouseCancel();
-    }
-
-    public void CluelessPrompt()
-    {
-        if (onCluelessPrompt != null)
-        {
-            onCluelessPrompt();
-        }
     }
 }

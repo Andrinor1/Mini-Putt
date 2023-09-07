@@ -20,16 +20,16 @@ public class ClickAndDrag : MonoBehaviour
 
     void Awake()
     {
-        scorekeeper = ScoreKeeper.Instance; // Assign the `gameManager` variable by using the static reference
+        scorekeeper = ScoreKeeper.instance; // Assign the `gameManager` variable by using the static reference
         body = GetComponent<Rigidbody2D>();
-        GameEvents.current.onMousePressed += OnMouseDown;
-        GameEvents.current.onMouseReleased += OnMouseUp;
+        GameEvents.instance.onMousePressed += OnMouseDown;
+        GameEvents.instance.onMouseReleased += OnMouseUp;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onMousePressed -= OnMouseDown;
-        GameEvents.current.onMouseReleased -= OnMouseUp;
+        GameEvents.instance.onMousePressed -= OnMouseDown;
+        GameEvents.instance.onMouseReleased -= OnMouseUp;
     }
 
     void Update()
@@ -75,6 +75,6 @@ public class ClickAndDrag : MonoBehaviour
         force = Mathf.Clamp(Vector2.Distance(mouseStart, mouseEnd) * velocityScale, 0, 3);
         hit = true;
         BallReady = false;
-        GameEvents.current.BallHit();
+        GameEvents.instance.BallHit();
     }
 }
