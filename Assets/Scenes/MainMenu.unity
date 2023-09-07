@@ -1330,9 +1330,9 @@ MonoBehaviour:
           m_StringArgument: Level1-1Freeplay
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2096399142}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1275103865}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayAudio
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2336,9 +2336,9 @@ MonoBehaviour:
           m_StringArgument: Level1-2Freeplay
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2096399142}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1275103865}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayAudio
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3700,9 +3700,9 @@ MonoBehaviour:
           m_StringArgument: Level1-3Freeplay
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2096399142}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1275103865}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayAudio
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4527,17 +4527,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095177114}
   m_CullTransparentMesh: 1
---- !u!114 &2096399142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5250077619953046571, guid: a9a448e05c63dcd4ab635754bf5ded28, type: 3}
-  m_PrefabInstance: {fileID: 969570768}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92247df5869bf1342bc67ff10de22076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2108479086
 GameObject:
   m_ObjectHideFlags: 0
